@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PotterShoppingCart
 {
-    public class Order
+    public class OrderData
     {
         public int Volumn { get; set; }
         public int Amount { get; set; }      
@@ -16,7 +16,7 @@ namespace PotterShoppingCart
         public PotterShoppingCart()
         {
         }
-        public int CountShippingCart(IEnumerable<Order> orders)
+        public int CountShippingCart(IEnumerable<OrderData> orders)
         {
             var totalprice = 0;
             foreach (var order in orders)
