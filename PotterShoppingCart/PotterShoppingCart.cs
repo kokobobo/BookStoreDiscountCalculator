@@ -16,9 +16,14 @@ namespace PotterShoppingCart
         public PotterShoppingCart()
         {
         }
-        public int CountShippingCart(IEnumerable<Order> order)
+        public int CountShippingCart(IEnumerable<Order> orders)
         {
-            return 1;
+            var totalprice = 0;
+            foreach (var order in orders)
+            {
+                totalprice += order.Amount * 100;
+            }
+            return totalprice;
         }
     }
 }
