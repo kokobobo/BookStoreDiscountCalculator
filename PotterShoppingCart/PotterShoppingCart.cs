@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PotterShoppingCart
 {
@@ -42,25 +43,34 @@ namespace PotterShoppingCart
             // 尋訪所有組別後依個別折扣計算總價
             foreach (var ordergroup in orderGroupList)
             {
-                if (ordergroup.Count == 2) // 2本95折
-                {
-                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.95);
-                }
-                else if (ordergroup.Count == 3) // 3本9折
-                {
-                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.9);
-                }
-                else if (ordergroup.Count == 4) // 4本8折
-                {
-                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.8);
-                }
-                else if (ordergroup.Count == 5) // 5本75折
-                {
-                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.75);
-                }
-                else // 原價
-                {
+                switch (ordergroup.Count)
+                 case 1: // 原價
+
                     totalPrice += ordergroup.Count * _bookOrigionPrice;
+                    break;
+
+                case 2: // 2本95折
+
+                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.95);
+                    break;
+
+                case 3: // 3本9折
+
+                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.9);
+                    break;
+
+                case 4: // 4本8折
+
+                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.8);
+                    break;
+
+                case 5: // 5本75折
+
+                    totalPrice += (int)(ordergroup.Count * _bookOrigionPrice * 0.75);
+                    break;
+
+                default:
+                    throw new Exception("This order is illegal (unknown book?)");                    
                 }
             }
 
